@@ -36,11 +36,7 @@ if [[ "$2" == "--global" ]] ; then
   fi
 fi
 
-# Check up and clean old versions
-echo "Checking and cleaning up old $1 files"
 
-# Removing ZIP File if exists
-rm -f $1.zip
 
 # If Old Directory exists, delete it
 if [ -d "./$1" ]; then
@@ -58,18 +54,6 @@ mkdir -p $LOCATION/backgrounds/gnome
 mkdir -p $LOCATION/gnome-background-properties
 
 # Download zip files from the oracle cloud object storage bucket.
-echo -e "${YELLOW}Downloading Files...${OFF}"
-echo ""
-status=$(curl -LJ https://cdn.manishk.dev/v2%2F$1.zip -o ./$1.zip --write-out %{http_code} --progress-bar)
-
-# # If file doesn't exist, exit the script with an error.
-if [[ "$status" -ne 200 ]] ; then
-  # Theme doesn't exist
-  echo ""
-  echo -e "${RED}$1 theme doesn't exist. Make sure you spelled it correctly.${OFF}"
-  rm -f $1.zip
-  exit 0
-fi
 
 # # Unzip the file
 unzip -q $1.zip -d ./$1
@@ -103,4 +87,3 @@ echo -e "${GREEN}Added $1 dynamic wallpaper!${OFF}"
 echo "Cleaning up ..."
 cd ..
 rm -rf $1
-rm $1.zip
