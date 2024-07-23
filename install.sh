@@ -77,7 +77,7 @@ sed -i "s+$PLACEHOLDER+$LOCATION+g" $1-timed.xml
 
 # Create required directories
 mkdir $LOCATION/backgrounds/gnome/$1-timed
-cp $1*.jp* $LOCATION/backgrounds/gnome/$1-timed
+cp $1*.{jp*,png} $LOCATION/backgrounds/gnome/$1-timed
 cp $1-timed.xml $LOCATION/backgrounds/gnome
 cp $1.xml $LOCATION/gnome-background-properties
 echo ""
